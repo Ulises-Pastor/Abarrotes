@@ -9,7 +9,7 @@ class ProductosRoutes {
     }
     config() {
         this.router.get('/', productosController_1.productosController.list);
-        this.router.get('/:id', productosController_1.productosController.listOne);
+        this.router.get('/:codigo', productosController_1.productosController.listOne);
         this.router.post('/crear', productosController_1.productosController.crear);
         this.router.put('/actualizar/:codigo', productosController_1.productosController.actualizar);
         this.router.delete('/eliminar/:codigo', productosController_1.productosController.eliminar);

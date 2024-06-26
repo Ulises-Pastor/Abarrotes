@@ -11,12 +11,12 @@ class ProductosRoutes
     config() : void
     {
         this.router.get('/', productosController.list );
-        this.router.get('/:id', productosController.listOne );
+        this.router.get('/:codigo', productosController.listOne );
         this.router.post('/crear', productosController.crear);
         this.router.put('/actualizar/:codigo', productosController.actualizar);
         this.router.delete('/eliminar/:codigo', productosController.eliminar);
     }
 }
 
-const productosRoutes= new ProductosRoutes();
+const productosRoutes = new ProductosRoutes();
 export default productosRoutes.router;

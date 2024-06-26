@@ -12,45 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.productosController = void 0;
+exports.rolesController = void 0;
 const database_1 = __importDefault(require("../database"));
-class ProductosController {
+class RolesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const respuesta = yield database_1.default.query('SELECT * FROM productos');
+            const respuesta = yield database_1.default.query('SELECT * FROM roles');
             res.json(respuesta);
         });
     }
     listOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { codigo } = req.params;
-            const respuesta = yield database_1.default.query('SELECT * FROM productos WHERE codigo = ?', [codigo]);
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('SELECT * FROM roles WHERE id = ?', [id]);
             if (respuesta.length > 0) {
                 res.json(respuesta[0]);
                 return;
             }
-            res.status(404).json({ 'mensaje': 'Producto no encontrado' });
+            res.status(404).json({ 'mensaje': 'Rol no encontrado.' });
         });
     }
-    crear(req, res) {
+    create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield database_1.default.query('INSERT INTO productos SET ?', [req.body]);
-            res.json(resp);
+            const respuesta = yield database_1.default.query('INSERT INTO roles SET ?', [req.body]);
+            res.json(respuesta);
         });
     }
-    actualizar(req, res) {
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { codigo } = req.params;
-            const resp = yield database_1.default.query('UPDATE productos SET ? WHERE codigo = ?', [req.body, codigo]);
-            res.json(resp);
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('UPDATE roles SET ? WHERE id = ?', [req.body, id]);
+            res.json(respuesta);
         });
     }
-    eliminar(req, res) {
+    delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { codigo } = req.params;
-            const resp = yield database_1.default.query('DELETE FROM productos WHERE codigo = ?', [codigo]);
-            res.json(resp);
+            const { id } = req.params;
+            const respuesta = yield database_1.default.query('DELETE FROM roles WHERE id = ?', [id]);
+            res.json(respuesta);
         });
     }
 }
-exports.productosController = new ProductosController();
+exports.rolesController = new RolesController();
